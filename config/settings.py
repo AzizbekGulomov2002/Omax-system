@@ -239,6 +239,7 @@ JAZZMIN_SETTINGS = {
         "app.Mijoz":"fas fa-users",
         "app.Import":"fas fa-cloud-download-alt",
         "app.Ombor":"fas fa-table",
+        "app.Hodim":"fas fa-user-tie",
        
         
     },

@@ -9,10 +9,14 @@ class Import(models.Model):
     mahsulot_nomi = models.CharField(max_length=200)
     format = models.CharField(choices=format, max_length=10)
     miqdor = models.IntegerField()
+    narx = models.IntegerField()
     import_vaqt = models.DateTimeField()
-    summa = models.CharField(max_length=200)
-    izoh = models.TextField()
+    izoh = models.TextField(null=True,blank=True)
     
+    @property
+    def summa(self):
+        self.miqdor * self.narx
+        
     def __str__(self):
         return f"{self.mahsulot_nomi} | {self.format} | {self.import_vaqt} | {self.summa}"
     
@@ -25,12 +29,17 @@ class Export(models.Model):
     mahsulot_nomi = models.CharField(max_length=200)
     format = models.CharField(choices=format, max_length=10)
     miqdor = models.IntegerField()
+    narx = models.IntegerField()
     export_vaqt = models.DateTimeField()
-    summa = models.CharField(max_length=200)
-    izoh = models.TextField()
+    
+    izoh = models.TextField(null=True,blank=True)
+    
+    @property
+    def summa(self):
+        self.miqdor * self.narx
     
     def __str__(self):
-        return f"{self.mahsulot_nomi} | {self.format} | {self.import_vaqt} | {self.summa}"
+        return f"{self.mahsulot_nomi} | {self.format} |{self.narx} | {self.import_vaqt} | {self.summa}"
     
     class Meta:
         verbose_name = 'Export'
@@ -52,13 +61,18 @@ class Mijoz(models.Model):
     
 class Buyurtma(models.Model):
     mijoz = models.ForeignKey(Mijoz, on_delete=models.CASCADE)
-    format = models.CharField(choices=format, max_length=10)
+    format = models.CharField(choices=format, max_length=10, null=True,blank=True)
+    narx = models.IntegerField()
+    miqdor = models.IntegerField()
     buyurtma_sana = models.DateTimeField()
-    summa = models.CharField(max_length=200)
-    izoh = models.TextField()
+    izoh = models.TextField(null=True,blank=True)
+    
+    @property
+    def summa(self):
+        self.miqdor * self.narx
     
     def __str__(self):
-        return f"{self.mijoz} | {self.format} | {self.buyurtma_sana} | {self.summa}"
+        return f"{self.mijoz} | {self.format} {self.miqdor} | {self.narx} | {self.buyurtma_sana} | {self.summa}"
     
     class Meta:
         verbose_name = 'Buyurtma'
@@ -68,8 +82,14 @@ class Buyurtma(models.Model):
 class Ombor(models.Model):
     mahsulot_nomi = models.ForeignKey(Mijoz, on_delete=models.CASCADE)
     format = models.CharField(choices=format, max_length=10)
-    izoh = models.TextField()
+    narx = models.IntegerField()
+    miqdor = models.IntegerField()
+    izoh = models.TextField(null=True,blank=True)
     
+    @property
+    def summa(self):
+        self.miqdor * self.narx
+        
     def __str__(self):
         return f"{self.mahsulot_nomi} | {self.format}"
     
@@ -78,3 +98,15 @@ class Ombor(models.Model):
         verbose_name_plural = 'Omborxona'
     
     
+class Hodim(models.Model):
+    ism_sharif = models.CharField(max_length=200)
+    lavozim = models.CharField(max_length=100)
+    stavka = models.IntegerField()
+    
+    
+    def __str__(self):
+        return f"{self.ism_sharif} | {self.lavozim} | {self.stavka}"
+    
+    class Meta:
+        verbose_name = 'Hodim'
+        verbose_name_plural = 'Hodimlar'

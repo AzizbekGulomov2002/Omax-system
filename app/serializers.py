@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Import,Export,Buyurtma,Mijoz
+from .models import Import,Export,Buyurtma,Mijoz,Hodim
 
 class ImportSerializers(serializers.ModelSerializer):
     class Meta:
@@ -21,4 +21,10 @@ class MijozSerializers(serializers.ModelSerializer):
 class BuyurtmaSerializers(serializers.ModelSerializer):
     class Meta:
         model = Buyurtma
+        fields = "__all__"
+        
+        
+class HodimSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Hodim
         fields = "__all__"

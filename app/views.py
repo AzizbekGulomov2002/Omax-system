@@ -3,8 +3,8 @@ from django.shortcuts import render
 # Create your views he
 
 from rest_framework.viewsets import ModelViewSet
-from .serializers import ImportSerializers,ExportSerializers,MijozSerializers,BuyurtmaSerializers
-from .models import Import, Export, Mijoz, Buyurtma
+from .serializers import ImportSerializers,ExportSerializers,MijozSerializers,BuyurtmaSerializers,HodimSerializers
+from .models import Import, Export, Mijoz, Buyurtma,Hodim
 
 
 class ImportViewSet(ModelViewSet):
@@ -28,4 +28,10 @@ class MijozViewSet(ModelViewSet):
 class BuyurtmaViewSet(ModelViewSet):
     queryset = Buyurtma.objects.all()
     serializer_class = BuyurtmaSerializers
+    http_method_names = ['get','head']
+    
+    
+class HodimViewSet(ModelViewSet):
+    queryset = Hodim.objects.all()
+    serializer_class = HodimSerializers
     http_method_names = ['get','head']
