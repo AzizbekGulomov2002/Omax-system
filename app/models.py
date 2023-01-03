@@ -63,5 +63,18 @@ class Buyurtma(models.Model):
     class Meta:
         verbose_name = 'Buyurtma'
         verbose_name_plural = 'Buyurtmalar'
+        
+        
+class Ombor(models.Model):
+    mahsulot_nomi = models.ForeignKey(Mijoz, on_delete=models.CASCADE)
+    format = models.CharField(choices=format, max_length=10)
+    izoh = models.TextField()
+    
+    def __str__(self):
+        return f"{self.mahsulot_nomi} | {self.format}"
+    
+    class Meta:
+        verbose_name = 'Ombor'
+        verbose_name_plural = 'Omborxona'
     
     

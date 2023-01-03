@@ -3,7 +3,7 @@ from django.contrib import admin
 # Register your models here.
 
 
-from .models import Buyurtma, Import, Export, Mijoz
+from .models import Buyurtma, Import, Export, Mijoz, Ombor
 
 class ImportAdmin(admin.ModelAdmin):
     list_display = ['mahsulot_nomi','format','import_vaqt','summa']
@@ -50,3 +50,15 @@ class BuyurtmaAdmin(admin.ModelAdmin):
     class Meta:
         model = Buyurtma
 admin.site.register(Buyurtma, BuyurtmaAdmin)
+
+
+
+class OmborAdmin(admin.ModelAdmin):
+    list_filter = ('mahsulot_nomi','format')
+    list_display = ['mahsulot_nomi','format']
+    list_per_page = 10
+    search_fields = ['mahsulot_nomi','format']
+
+    class Meta:
+        model = Ombor
+admin.site.register(Ombor, OmborAdmin)
