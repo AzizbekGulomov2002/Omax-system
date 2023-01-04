@@ -43,7 +43,7 @@ admin.site.register(Mijoz, MijozAdmin)
 
 class BuyurtmaAdmin(admin.ModelAdmin):
     list_filter = ('format','buyurtma_sana','miqdor','narx')
-    list_display = ['mijoz','format','buyurtma_sana','miqdor','narx','summa','summa']
+    list_display = ['mijoz','format','buyurtma_sana','miqdor','narx','summa']
     list_per_page = 10
     search_fields = ['mijoz','format','buyurtma_sana','summa']
 
