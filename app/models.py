@@ -15,7 +15,7 @@ class Import(models.Model):
     
     @property
     def summa(self):
-        self.summa = (self.miqdor * self.narx)
+        return self.narx * self.miqdor
         
     def __str__(self):
         return f"{self.mahsulot_nomi} | {self.format} | {self.import_vaqt} | {self.summa}"
@@ -36,7 +36,7 @@ class Export(models.Model):
     
     @property
     def summa(self):
-        self.summa = (self.miqdor * self.narx)
+        return self.narx * self.miqdor
     
     def __str__(self):
         return f"{self.mahsulot_nomi} | {self.format} |{self.narx} | {self.import_vaqt} | {self.summa}"
@@ -68,9 +68,11 @@ class Buyurtma(models.Model):
     izoh = models.TextField(null=True,blank=True)
     
     @property
+    
     def summa(self):
-        self.summa = (self.miqdor * self.narx)
-        
+        return self.narx * self.miqdor
+    
+    
     
     def __str__(self):
         return f"{self.mijoz} | {self.format} {self.miqdor} | {self.narx} | {self.buyurtma_sana} | {self.summa}"
@@ -89,7 +91,7 @@ class Ombor(models.Model):
     
     @property
     def summa(self):
-        self.summa = (self.miqdor * self.narx)
+        return self.narx * self.miqdor
         
     def __str__(self):
         return f"{self.mahsulot_nomi} | {self.format}"
