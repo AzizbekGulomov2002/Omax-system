@@ -94,7 +94,7 @@ class Ombor(models.Model):
         return self.narx * self.miqdor
         
     def __str__(self):
-        return f"{self.mahsulot_nomi} | {self.format}"
+        return f"{self.mahsulot_nomi} | {self.format} | {self.narx} | {self.miqdor} | {self.summa}"
     
     class Meta:
         verbose_name = 'Ombor'
