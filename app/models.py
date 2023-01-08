@@ -39,7 +39,7 @@ class Export(models.Model):
         return self.narx * self.miqdor
     
     def __str__(self):
-        return f"{self.mahsulot_nomi} | {self.format} |{self.narx} | {self.import_vaqt} | {self.summa}"
+        return f"{self.mahsulot_nomi} | {self.format} |{self.narx} | {self.export_vaqt} | {self.summa}"
     
     class Meta:
         verbose_name = 'Export'
